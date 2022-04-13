@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<section class="content">
+  <div class="main">
+    <div class="main-header">
+      <img src="/static/img/user.png" class="logo" />
+      <h1>EDIT</h1>
+    </div>
+  </div>
+  <section class="post_form">
+
+    <div class="my_icon">
+      <img src="{% static 'img/1.png' %}" class>
+  </div>
+    <form
+      action="/edit/{{post.id}}/"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+      {% csrf_token %}
+      <input class="name" type="text" name="name" value="{{post.name}}" required /><br>
+      <textarea type="text" name="body" placeholder="{{post.body}}"  required></textarea>
+      <!-- <input
+       class="name"
+        type="text"
+        name="body"
+        value="{{post.body}}"
+        required
+      /> -->
+      <br>
+      {% if post.image.url %}
+      <img
+        src="{{ post.image.url }}"
+        style="width: 250px; height: 200px"
+      />
+      {% endif %}
+      <br>
+      
+      <input type="file" name="image" id="addedinput" />
+      <br>
+      <div class="editbottom">
+      <a href="/" id="cancel"style=" width:60px; background-color: red">Cancel</a>
+      <input
+        type="submit"
+        value="Update"
+        style="width: 60px; background-color: #3494DD"
+        id="update"
+      />
+      </div>
+      <!-- <input
+        type="submit"
+        value="Cancel"
+        style="width: 60px; background-color: red"
+      /> -->
+    </form>
+  </section>
+</section>
+  {% endblock %}
